@@ -21,3 +21,29 @@ body {
   text-decoration: none;
   transform: rotate(4deg);
 }
+
+/* Footer */
+
+.footer {
+  border-top: 1px solid #ddd;
+  margin: 45px 15px 10px;
+  padding: 5px 10px;
+}
+
+.footer small {
+  color: #777;
+  float: left;
+}
+
+.footer ul {
+  float: right;
+  list-style: none;
+}
+
+.footer a {
+  color: #555;
+}
+
+.footer a:hover {
+  color: #222;
+}
