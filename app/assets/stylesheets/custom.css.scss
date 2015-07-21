@@ -14,12 +14,12 @@ body {
   transform: rotate(-5deg);
   transition: color 0.2s ease,
               transform 0.8s ease;
-}
 
-.logo:hover {
-  color: #ff2fe5;
-  text-decoration: none;
-  transform: rotate(4deg);
+  &:hover {
+    color: #ff2fe5;
+    text-decoration: none;
+    transform: rotate(4deg);
+  }
 }
 
 /* Footer */
@@ -28,22 +28,21 @@ body {
   border-top: 1px solid #ddd;
   margin: 45px 15px 10px;
   padding: 5px 10px;
-}
 
-.footer small {
-  color: #777;
-  float: left;
-}
+  a {
+    color: #555;
+    &:hover {
+      color: #222;
+    }
+  }
 
-.footer ul {
-  float: right;
-  list-style: none;
-}
+  small {
+    color: #777;
+    float: left;
+  }
 
-.footer a {
-  color: #555;
-}
-
-.footer a:hover {
-  color: #222;
+  ul {
+    float: right;
+    list-style: none;
+  }
 }
