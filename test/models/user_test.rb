@@ -33,7 +33,8 @@ class UserTest < ActiveSupport::TestCase
       "  ",
       "a" * 246 + "@gmail.com",
       "trick@daddy,com",
-      "facebook.com"
+      "facebook.com",
+      "yimdaesun@gmail..com"
     ]
 
     for name in invalid_email_tests
