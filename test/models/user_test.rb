@@ -4,8 +4,8 @@ class UserTest < ActiveSupport::TestCase
   
   def setup
     @user = User.new(first_name: "Greatest", last_name: "Drake",
-                     email: "yimdaesun@gmail.com", password: "foobar",
-                     password_confirmation: "foobar")
+                     email: "yimdaesun@gmail.com", password: "asdfasdfasdf",
+                     password_confirmation: "asdfasdfasdf")
   end
 
   test "Newly generated user should be valid" do
@@ -60,6 +60,13 @@ class UserTest < ActiveSupport::TestCase
     duplicate_user.email = duplicate_user.email.upcase
     @user.save
     assert_not duplicate_user.valid?
+  end
+
+  test "Email addresses should be downcased" do
+    obnoxious_email_address = "tUnE-yArDs@4ad.com"
+    @user.email = obnoxious_email_address
+    @user.save
+    assert_equal obnoxious_email_address.downcase, @user.reload.email
   end
 
   test "Password validation" do
