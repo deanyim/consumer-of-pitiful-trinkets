@@ -7,12 +7,35 @@
   box-sizing:         border-box;
 }
 
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  margin-bottom: 15px;
+  width: 100%;
+  @include box_sizing;
+}
+
 body {
   padding-top: 60px;
 }
 
+.error-text {
+  color: red;
+}
+
+.mts {
+  margin-top: 20px;
+}
+
+.mbs {
+  margin-bottom: 20px;
+}
+
 .mtm {
   margin-top: 40px;
+}
+
+.mbm {
+  margin-bottom: 40px;
 }
 
 .logo {
@@ -62,4 +85,13 @@ body {
   float: left;
   width: 100%;
   @include box_sizing;
+}
+
+/* Forms */
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
 }
