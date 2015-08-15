@@ -3,7 +3,7 @@ require 'test_helper'
 class StaticPagesControllerTest < ActionController::TestCase
 
   def setup
-    @base_title = "Spider With 1000 Eyes"
+    @base_title = "Consumer of Pitiful Trinkets"
   end
 
   test "should get home" do
