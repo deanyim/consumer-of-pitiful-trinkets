@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
 
-  test "Invalid signup information -> no User created" do
+  test "Invalid signup information -> no User created, no flash" do
     get signup_path
     assert_no_difference 'User.count' do
       post users_path, user: { first_name: "",
@@ -12,9 +12,10 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                password_confirmation: "bar" }
     end
     assert_template 'users/new'
+    assert flash.empty?
   end
 
-  test "Valid signup information -> one User created" do
+  test "Valid signup information -> one User created, flash displayed" do
     get signup_path
     assert_difference 'User.count', 1 do
       post_via_redirect users_path, user: {
@@ -26,6 +27,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       }
     end
     assert_template 'users/show'
+    assert_not flash.empty?
   end
 
   test "Error message testing" do
