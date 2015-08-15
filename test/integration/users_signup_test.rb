@@ -27,4 +27,36 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     assert_template 'users/show'
   end
+
+  test "Error message testing" do
+    empty_password_hash = {
+      first_name: "",
+      last_name: "",
+      email: "daesun@invalid",
+      password: "",
+      password_confirmation: ""
+    }
+
+    empty_password_tests = {
+      "user[first_name]" => true,
+      "user[last_name]" => true,
+      "user[email]" => true,
+      "user[password]" => true,
+      "user[password_confirmation]" => false,
+    }
+    post users_path, user: empty_password_hash
+    empty_password_tests.each do |field_name, expected|
+      assert_select ".field_with_errors [name=?]", field_name, expected
+    end
+
+    mismatched_password_hash = empty_password_hash.clone
+    mismatched_password_hash[:password] = "lacrosse"
+    mismatched_password_tests = empty_password_tests.clone
+    mismatched_password_tests["user[password_confirmation]"] = true
+
+    post users_path user: mismatched_password_hash
+    mismatched_password_tests.each do |field_name, expected|
+      assert_select ".field_with_errors [name=?]", field_name, expected
+    end
+  end
 end

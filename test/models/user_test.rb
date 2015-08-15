@@ -71,14 +71,16 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "Password validation" do
-    invalid_password_tests = [
-      " " * 10,
-      "a" * 9
-    ]
-
-    for password in invalid_password_tests
-      @user.password = @user.password_confirmation = password
-      assert_not @user.valid?, "#{password} should not be valid"
-    end
+    invalid_password = "a" * 9
+    @user.password = @user.password_confirmation = invalid_password
+    assert_not @user.valid?, "#{invalid_password} should not be valid"
+    
+    invalid_new_password = " " * 10
+    new_user = User.new(first_name: "Greatest", last_name: "Drake",
+                        email: "yimdaesun@gmail.com",
+                        password: invalid_password,
+                        password_confirmation: invalid_password)
+    new_user.save
+    assert_not new_user.valid?, "#{invalid_password} should not be valid"
   end
 end
